@@ -8,7 +8,7 @@ const SVC = [
 ]
 const FAQ = [
   ['What is Garbhsanskar?', "A traditional approach of positive thoughts, music, diet and routines during pregnancy to support the mother's and baby's wellbeing."],
-  ['How do I book an appointment?', 'Click any "Book Appointment" button, choose a day and time, or call +91-9727006001. We will confirm your slot.'],
+  ['How do I book an appointment?', 'Click any "Book Appointment" button, choose a day and time, or call +91-8171455302. We will confirm your slot.'],
   ['When should I first visit during pregnancy?', 'As soon as you confirm your pregnancy, or earlier when planning, for a pre-conception check-up.'],
 ]
 
@@ -28,7 +28,7 @@ export default function Services({ onBook }) {
               </div>
             ))}
           </div>
-          <div className="sim"><img src="/images/hero.jpg" alt="Expecting mother" /></div>
+          <div className="sim"><video src="/videos/services.mp4" autoPlay muted loop playsInline controls preload="metadata" aria-label="Dr. Rupali Gupta services video" /></div>
         </div>
       </div>
     </section>

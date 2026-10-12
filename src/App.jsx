@@ -5,6 +5,7 @@ import Journey from './components/Journey'
 import About from './components/About'
 import Services, { Faq } from './components/Services'
 import Testimonials from './components/Testimonials'
+import ExpertTalks from './components/ExpertTalks'
 import CtaBanner from './components/CtaBanner'
 import Footer from './components/Footer'
 import BookingModal from './components/BookingModal'
@@ -32,6 +33,7 @@ export default function App() {
       <About />
       <Services onBook={book} />
       <Journey />
+      <ExpertTalks />
       <Testimonials />
       <Faq />
       <CtaBanner onBook={book} />

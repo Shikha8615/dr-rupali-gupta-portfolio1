@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="fbr"><span className="mono lt">RG</span><span><b>Dr. Rupali Gupta</b><small>Gynaecologist & Garbhsanskar Guide</small></span></div>
             <nav className="fl2" aria-label="Footer">{LINKS.map(([id, t]) => <a key={id} href={'#' + id}>{t}</a>)}</nav>
             <ul className="fc2">
-              <li><Pin s={16} /> Motera, Ahmedabad</li>
+              <li><Pin s={16} /> Karnal</li>
               <li><Phone s={16} /><a href={tel}>{PHONE}</a></li>
               <li><Mail s={16} /><a href={'mailto:' + EMAIL}>{EMAIL}</a></li>
             </ul>

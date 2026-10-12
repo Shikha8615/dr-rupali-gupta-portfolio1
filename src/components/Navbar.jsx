@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Moon, Sun, ArrowUR } from './Icons'
 
-const LINKS = [['top', 'Home'], ['about', 'About'], ['services', 'Services'], ['journey', 'Journey'], ['faq', 'FAQ'], ['contact', 'Contact']]
+const LINKS = [['top', 'Home'], ['about', 'About'], ['services', 'Services'], ['journey', 'Journey'], ['expert-talks', 'Expert Talks'], ['faq', 'FAQ'], ['contact', 'Contact']]
 
 export default function Navbar({ onBook, dark, toggle }) {
   const [open, setOpen] = useState(false)

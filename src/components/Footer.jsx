@@ -4,7 +4,7 @@ import { Facebook, Instagram, Youtube, Pin, Phone, Mail, Chat, Up, Heart } from 
 
 const LINKS = [['top', 'Home'], ['about', 'About'], ['services', 'Services'], ['journey', 'Journey'], ['faq', 'FAQ'], ['contact', 'Contact']]
 
-export default function Footer() {
+export default function Footer({ homeHref = '' }) {
   const [show, setShow] = useState(false)
   useEffect(() => {
     const f = () => setShow(window.scrollY > 500)
@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="w">
           <div className="fr">
             <div className="fbr"><span className="mono lt">RG</span><span><b>Dr. Rupali Gupta</b><small>Gynaecologist & Garbhsanskar Guide</small></span></div>
-            <nav className="fl2" aria-label="Footer">{LINKS.map(([id, t]) => <a key={id} href={'#' + id}>{t}</a>)}</nav>
+            <nav className="fl2" aria-label="Footer">{LINKS.map(([id, t]) => <a key={id} href={homeHref + '#' + id}>{t}</a>)}</nav>
             <ul className="fc2">
               <li><Pin s={16} /> Karnal</li>
               <li><Phone s={16} /><a href={tel}>{PHONE}</a></li>

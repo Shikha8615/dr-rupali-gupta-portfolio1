@@ -1,10 +1,10 @@
-import { Heart, Shield, Leaf, Users, ArrowUR } from './Icons'
+import { Heart, Shield, Leaf, Users, Arrow } from './Icons'
 
 const SVC = [
-  [Heart, 'Pregnancy Care', 'Regular check-ups, pregnancy guidance and delivery support.'],
-  [Shield, 'Gynaecology Care', "Women's reproductive and hormonal health."],
-  [Leaf, 'Garbhsanskar', 'Mental, emotional and spiritual pregnancy guidance.'],
-  [Users, 'Family Planning', 'Personalised counselling for your future family goals.'],
+  [Heart, 'Pregnancy Care', 'Guidance from your first visit through delivery.'],
+  [Shield, 'Gynaecology Care', "Support for reproductive and hormonal health."],
+  [Leaf, 'Garbhsanskar', 'Mindful pregnancy and wellbeing guidance.'],
+  [Users, 'Family Planning', 'Personalised counselling for your future family.'],
 ]
 const FAQ = [
   ['What is Garbhsanskar?', "A traditional approach of positive thoughts, music, diet and routines during pregnancy to support the mother's and baby's wellbeing."],
@@ -13,28 +13,30 @@ const FAQ = [
 ]
 
 export default function Services({ onBook }) {
-  const book = e => { e.preventDefault(); onBook() }
   return (
-    <section id="services">
-      <div className="w">
-        <div className="sh2"><div><h2>Treatment Plans, Just for You</h2><p>Expert gynaecological solutions tailored to your unique needs.</p></div><a className="pill" href="#book" onClick={book}>See All <ArrowUR s={16} /></a></div>
-        <div className="sx">
-          <div className="sg">
+    <section id="services" aria-labelledby="services-heading">
+      <div className="w services-layout">
+        <div className="services-copy">
+          <p className="services-eyebrow">Our Services</p>
+          <h2 id="services-heading">Care designed around you</h2>
+          <p className="services-intro">Personalised gynaecological care through every stage of life.</p>
+          <div className="service-list">
             {SVC.map(([I, t, d]) => (
-              <div key={t}>
-                <i className="sic"><I s={26} /></i>
-                <h3>{t}</h3><p>{d}</p>
-                <a href="#book" onClick={book}>Learn More ›</a>
-              </div>
+              <a className="service-row" key={t} href={t === 'Pregnancy Care' ? '/pregnancy-care.html' : t === 'Gynaecology Care' ? '/gynaecology-care.html' : t === 'Garbhsanskar' ? '/garbhsanskar.html' : '/family-planning.html'}>
+                <span className="service-icon"><I s={40} /></span>
+                <span className="service-text"><h3>{t}</h3><p>{d}</p></span>
+                <Arrow s={24} />
+              </a>
             ))}
           </div>
-          <div className="sim"><video src="/videos/services.mp4" autoPlay muted loop playsInline controls preload="metadata" aria-label="Dr. Rupali Gupta services video" /></div>
+        </div>
+        <div className="service-film">
+          <video src="/videos/services.mp4" autoPlay muted loop playsInline controls preload="metadata" aria-label="Dr. Rupali Gupta services video" />
         </div>
       </div>
     </section>
   )
 }
-
 export function Faq() {
   return (
     <section id="faq" className="faq">

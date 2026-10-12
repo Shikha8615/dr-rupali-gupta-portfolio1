@@ -2,7 +2,16 @@
 export const PHONE = '+91-8171455302'
 export const WA_NUMBER = '918171455302'
 export const EMAIL = 'Rupaligskill.rg@gmail.com'
-export const SERVICES = ['Pregnancy Care', 'Garbhsanskar Counselling', 'Infertility Consultation', 'PCOS / PCOD', 'General Gynaecology']
+export const SERVICES = ['Pregnancy Care', 'Garbhsanskar Counselling', 'Infertility Consultation', 'PCOS / PCOD', 'General Gynaecology', 'Family Planning']
+// Add the medical shopping URL here when the shop is ready.
+export const MEDICAL_SHOP_URL = ''
+// Replace preview images and add individual product URLs when the store is ready.
+export const SHOP_PRODUCTS = [
+  { name: 'PCOD Care', category: 'Hormonal Wellness', description: 'Explore care options alongside personalised PCOD guidance.', image: '/images/wellness-product-preview.png', url: '' },
+  { name: 'Menstrual Care', category: 'Cycle Wellness', description: 'Discover wellness essentials for your menstrual care routine.', image: '/images/wellness-product-preview.png', url: '' },
+  { name: 'Thyroid Care', category: 'Everyday Wellbeing', description: 'Discuss suitable products as part of your clinician-led thyroid care.', image: '/images/wellness-product-preview.png', url: '' },
+  { name: 'Uterine Support', category: 'Reproductive Wellness', description: 'Explore reproductive wellness options with expert advice.', image: '/images/wellness-product-preview.png', url: '' },
+]
 
 // Hero / strip highlights (from the design) - CONFIRM before going live
 export const STATS = [['8+', 'Years Experience'], ['1000+', 'Happy Patients'], ['24/7', 'Patient Support'], ['Karnal', 'Clinic Location']]

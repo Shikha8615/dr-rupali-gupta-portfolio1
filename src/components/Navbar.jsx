@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react'
 import { Moon, Sun, ArrowUR } from './Icons'
 
-const LINKS = [['top', 'Home'], ['about', 'About'], ['services', 'Services'], ['journey', 'Journey'], ['expert-talks', 'Expert Talks'], ['faq', 'FAQ'], ['contact', 'Contact']]
+const LINKS = [['top', 'Home'], ['about', 'About'], ['services', 'Services'], ['journey', 'Journey'], ['expert-talks', 'Expert Talks'], ['shop', 'Shop'], ['faq', 'FAQ'], ['contact', 'Contact']]
 
-export default function Navbar({ onBook, dark, toggle }) {
+export default function Navbar({ onBook, dark, toggle, homeHref = '', activeSection }) {
   const [open, setOpen] = useState(false)
   const [sc, setSc] = useState(false)
-  const [act, setAct] = useState('top')
+  const [act, setAct] = useState(activeSection || 'top')
 
   useEffect(() => {
     const on = () => {
       const y = window.scrollY
       const max = document.documentElement.scrollHeight - window.innerHeight
       setSc(y > 20)
+      if (activeSection) {
+        setAct(activeSection)
+        return
+      }
       let cur = 'top'
       for (const [id] of LINKS) {
         const el = document.getElementById(id)
@@ -32,17 +36,17 @@ export default function Navbar({ onBook, dark, toggle }) {
       window.removeEventListener('resize', rs)
       window.removeEventListener('keydown', esc)
     }
-  }, [])
+  }, [activeSection])
 
   const book = e => { e.preventDefault(); setOpen(false); onBook() }
   const links = cls => LINKS.map(([id, t]) => (
-    <a key={id} href={'#' + id} className={`${cls} ${act === id ? 'on' : ''}`} onClick={() => setOpen(false)}>{t}</a>
+    <a key={id} href={homeHref + '#' + id} className={`${cls} ${act === id ? 'on' : ''}`} onClick={() => setOpen(false)}>{t}</a>
   ))
 
   return (
     <header className={'hd' + (sc ? ' sc' : '')}>
       <div className="w">
-        <a href="#top" className="br" onClick={() => setOpen(false)}>Dr. Rupali</a>
+        <a href={homeHref + '#top'} className="br" onClick={() => setOpen(false)}>Dr. Rupali</a>
         <nav className="nv" aria-label="Main">{links('l')}</nav>
         <div className="ac">
           <button className="ic" type="button" aria-label="Toggle dark / light mode" onClick={toggle}>{dark ? <Sun s={18} /> : <Moon s={18} />}</button>

@@ -3,7 +3,7 @@ import { Moon, Sun, ArrowUR } from './Icons'
 
 const LINKS = [['top', 'Home'], ['about', 'About'], ['services', 'Services'], ['journey', 'Journey'], ['expert-talks', 'Expert Talks'], ['shop', 'Shop'], ['faq', 'FAQ'], ['contact', 'Contact']]
 
-export default function Navbar({ onBook, dark, toggle, homeHref = '', activeSection }) {
+export default function Navbar({ onBook, onEmergency, dark, toggle, homeHref = '', activeSection }) {
   const [open, setOpen] = useState(false)
   const [sc, setSc] = useState(false)
   const [act, setAct] = useState(activeSection || 'top')
@@ -40,6 +40,7 @@ export default function Navbar({ onBook, dark, toggle, homeHref = '', activeSect
 
   const book = e => { e.preventDefault(); setOpen(false); onBook() }
   const links = cls => LINKS.map(([id, t]) => (
+    id === 'shop' ? <span key={id} className={`${cls} shop-coming-soon`} aria-disabled="true">Shop <small>Coming Soon</small></span> :
     <a key={id} href={homeHref + '#' + id} className={`${cls} ${act === id ? 'on' : ''}`} onClick={() => setOpen(false)}>{t}</a>
   ))
 
@@ -50,6 +51,7 @@ export default function Navbar({ onBook, dark, toggle, homeHref = '', activeSect
         <nav className="nv" aria-label="Main">{links('l')}</nav>
         <div className="ac">
           <button className="ic" type="button" aria-label="Toggle dark / light mode" onClick={toggle}>{dark ? <Sun s={18} /> : <Moon s={18} />}</button>
+          <button className="emergency-nav" type="button" onClick={() => { setOpen(false); onEmergency() }}><span>Emergency Booking</span><small>₹299 · 9 AM–6 PM</small></button>
           <a className="pill sm appointment-highlight" href="#book" onClick={book}>Book Appointment <ArrowUR s={15} /></a>
           <button className={'bg' + (open ? ' x' : '')} aria-label="Menu" aria-expanded={open} onClick={() => setOpen(o => !o)}><i /><i /><i /></button>
         </div>
@@ -57,6 +59,7 @@ export default function Navbar({ onBook, dark, toggle, homeHref = '', activeSect
       <div className={'mp' + (open ? ' open' : '')}>
         <div className="in">
           {links('l')}
+          <button className="emergency-nav emergency-mobile" type="button" onClick={() => { setOpen(false); onEmergency() }}><span>Emergency Booking</span><small>₹299 · 9 AM–6 PM</small></button>
           <a className="pill appointment-highlight" href="#book" onClick={book}>Book Appointment <ArrowUR s={16} /></a>
         </div>
       </div>

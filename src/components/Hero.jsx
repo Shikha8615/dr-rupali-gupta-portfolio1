@@ -5,7 +5,7 @@ export default function Hero({ onBook }) {
   return (
     <section className="hero" id="top">
       <div className="hs">
-        <span className="wm" aria-hidden="true">Rupali</span>
+        <span className="wm" aria-hidden="true">Rupali Gupta</span>
         <img className="hp" src="/images/doctor-cut.webp" alt="Dr. Rupali Gupta, Gynaecologist" />
         <span className="tg tgw"><b>Healthy Women</b><i>|</i><b>Happy Families</b><i>|</i><b>Brighter Future</b></span>
         <div className="hrt"><b>{STATS[0][0]}</b><span>Years of experience in women's health &amp; Garbhsanskar care.</span></div>

@@ -23,9 +23,9 @@ function makeDays() {
   return out
 }
 
-const EMPTY = { name: '', phone: '', email: '', age: '', city: '', type: SERVICES[3], concern: '', prev: '' }
+const EMPTY = { name: '', lastName: '', phone: '', email: '', age: '', city: '', lastPeriodDate: '', type: SERVICES[3], concern: '', prev: '' }
 
-export default function BookingModal({ open, onClose }) {
+export default function BookingModal({ open, onClose, initialDetails }) {
   const days = useMemo(makeDays, [open])
   const [booked, setBooked] = useState(load)
   const [step, setStep] = useState(1)
@@ -38,6 +38,9 @@ export default function BookingModal({ open, onClose }) {
   const [busy, setBusy] = useState(false)
   const [done, setDone] = useState({ text: '', sum: '' })
   const set = k => e => setF({ ...f, [k]: e.target.value })
+  useEffect(() => {
+    if (open && initialDetails) setF(value => ({ ...value, name: initialDetails.name, lastName: '', phone: initialDetails.phone }))
+  }, [open, initialDetails])
 
   useEffect(() => {
     if (open) { setStep(1); setSt(null); setSd(days[0] && days[0].k); setErr(''); setBooked(load()) }
@@ -58,21 +61,20 @@ export default function BookingModal({ open, onClose }) {
   const toDetails = () => { setF({ ...f, type: topic }); setStep(2) }
 
   const pay = () => {
-    const n = f.name.trim(), p = f.phone.trim(), m = f.email.trim()
-    if (!n || !/^[0-9+\s-]{10,15}$/.test(p)) return setErr('Please enter your name and a valid mobile number.')
+    const firstName = f.name.trim()
+    const n = [firstName, f.lastName.trim()].filter(Boolean).join(' '), p = f.phone.trim(), m = f.email.trim()
+    if (!firstName || !/^[0-9+\s-]{10,15}$/.test(p)) return setErr('Please enter your first name and a valid mobile number.')
     if (m && !/^\S+@\S+\.\S+$/.test(m)) return setErr('Please enter a valid email address.')
     const k = key(sd, st)
     if (load()[k]) { setBooked(load()); setSt(null); setStep(1); return alert('Sorry, this slot was just booked. Please choose another.') }
     setErr(''); setBusy(true)
     setTimeout(() => {
-      const nb = { ...load(), [k]: 1 }
-      try { localStorage.setItem(LS, JSON.stringify(nb)) } catch { /* ignore */ }
-      setBooked(nb)
       const sum = `${summary} · ${f.type}`
-      const text = `Hello Dr. Rupali Gupta, I have booked a consultation.\nName: ${n}\nPhone: ${p}` +
+      const text = `Hello Dr. Rupali Gupta, I would like to request a consultation.\nName: ${n}\nPhone: ${p}` +
         (m ? `\nEmail: ${m}` : '') + (f.age ? `\nAge: ${f.age}` : '') + (f.city ? `\nCity: ${f.city}` : '') +
+        (f.lastPeriodDate ? `\nLast Period Date: ${f.lastPeriodDate}` : '') +
         `\nType: ${f.type}\nSlot: ${sum}` + (f.concern ? `\nConcern: ${f.concern}` : '') +
-        (f.prev ? `\nPrevious details: ${f.prev}` : '') + '\nFee: ₹799 (demo payment)'
+        (f.prev ? `\nPrevious details: ${f.prev}` : '') + '\nConsultation fee: ₹199 (payment pending)'
       setDone({ text, sum })
       setBusy(false); setConsent(false); setStep(3)
     }, 900)
@@ -88,7 +90,7 @@ export default function BookingModal({ open, onClose }) {
             <small className="k" style={{ marginTop: 6 }}>Online gynaecology consultation</small>
             <h3>Choose your time.</h3>
             <p style={{ margin: 0, opacity: 0.8 }}>Select a day and an available 15-minute slot.</p>
-            <div className="fee"><span>15-minute video consultation</span><b style={{ color: 'var(--mar)' }}>₹799 <small style={{ fontWeight: 400 }}>sample fee</small></b></div>
+            <div className="fee"><span>15-minute video consultation</span><b style={{ color: 'var(--mar)' }}>₹199</b></div>
             <small className="k">Select a day</small>
             <div className="days">
               {days.map(d => (
@@ -116,34 +118,36 @@ export default function BookingModal({ open, onClose }) {
           <div>
             <small className="k" style={{ marginTop: 6 }}>Online gynaecology consultation</small>
             <h3>A few details.</h3>
-            <p style={{ margin: '0 0 6px', opacity: 0.8 }}>Use this preview to explore the booking flow. Please do not enter real personal or medical information.</p>
+            <p style={{ margin: '0 0 6px', opacity: 0.8 }}>Please fill in your details so we can prepare for your consultation.</p>
             <p style={{ margin: '0 0 10px', color: 'var(--mar)', fontWeight: 600 }}>{summary} · {f.type}</p>
             <div className="fg">
-              <label>Full name<input placeholder="Your name" value={f.name} onChange={set('name')} /></label>
+              <label>First name<input autoComplete="given-name" placeholder="First name" value={f.name} onChange={set('name')} /></label>
+              <label>Last name<input autoComplete="family-name" placeholder="Last name" value={f.lastName} onChange={set('lastName')} /></label>
               <label>Mobile / WhatsApp<input type="tel" placeholder="+91" value={f.phone} onChange={set('phone')} /></label>
               <label>Email<input type="email" placeholder="you@example.com" value={f.email} onChange={set('email')} /></label>
               <label>Age<input type="number" min="1" max="99" placeholder="Age" value={f.age} onChange={set('age')} /></label>
               <label>City<input placeholder="City" value={f.city} onChange={set('city')} /></label>
+              <label>Last Period Date<input type="date" value={f.lastPeriodDate} onChange={set('lastPeriodDate')} /></label>
               <label>Consultation type<select value={f.type} onChange={set('type')}>{SERVICES.map(s => <option key={s}>{s}</option>)}</select></label>
             </div>
-            <label className="ta">Main concern<textarea rows="3" placeholder="Do not enter personal health details in this demo" value={f.concern} onChange={set('concern')} /></label>
-            <label className="ta">Previous treatment or details<textarea rows="3" placeholder="Optional · demo only" value={f.prev} onChange={set('prev')} /></label>
-            <div className="nt">🛡 <div><b>Reports and prescriptions</b><br />Secure document upload will be enabled when the clinic storage is connected. Do not attach private records in this demo.</div></div>
-            <label className="cs"><input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)} /> <span>I understand this is a demo. I consent to use the details above for this preview only and will not enter sensitive medical information.</span></label>
+            <label className="ta">Main concern<textarea rows="3" placeholder="Briefly describe your symptoms or reason for consultation" value={f.concern} onChange={set('concern')} /></label>
+            <label className="ta">Previous treatment or details<textarea rows="3" placeholder="Optional — previous treatment, medicines or relevant history" value={f.prev} onChange={set('prev')} /></label>
+            <div className="nt">🛡 <div><b>Reports and prescriptions</b><br />Please keep relevant reports and prescriptions ready for your consultation. Online upload is currently unavailable.</div></div>
+            <label className="cs consultation-validity"><input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)} /> <span><strong>Consultation validity — 7 days</strong><br />I understand that my consultation is valid for 7 days from the consultation date. I consent to the clinic using the details provided to arrange my consultation.</span></label>
             <small style={{ color: '#e53935' }}>{err}</small>
             <div style={{ display: 'flex', gap: 12, marginTop: 10 }}>
               <button className="go" style={{ width: 'auto', margin: 0, background: 'none', color: 'var(--mar)', border: '1px solid var(--mar)' }} onClick={() => setStep(1)}>Back</button>
-              <button className="go" style={{ margin: 0 }} disabled={!consent || busy} onClick={pay}>{busy ? 'Processing demo payment…' : 'Continue to demo payment · ₹799 ↗'}</button>
+              <button className="go" style={{ margin: 0 }} disabled={!consent || busy} onClick={pay}>{busy ? 'Preparing request…' : 'Continue with request · ₹199 ↗'}</button>
             </div>
-            <p className="nt" style={{ marginTop: 14, fontSize: '.8rem' }}>Payment gateway is not connected. Continue simulates successful payment to preview confirmation.</p>
+            <p className="nt" style={{ marginTop: 14, fontSize: '.8rem' }}>Your appointment will be confirmed by the clinic. Payment instructions will be shared separately.</p>
           </div>
         )}
 
         {step === 3 && (
           <div>
-            <h3>✔ Slot booked!</h3>
+            <h3>Your consultation request is ready</h3>
             <p>{done.sum}</p>
-            <p style={{ fontSize: '.9rem', opacity: 0.8 }}>This slot is now closed for other visitors. Send your confirmation to the clinic:</p>
+            <p style={{ fontSize: '.9rem', opacity: 0.8 }}>Send your request to the clinic using an option below. Your appointment is pending confirmation.</p>
             <SendOptions text={done.text} name={f.name} />
           </div>
         )}

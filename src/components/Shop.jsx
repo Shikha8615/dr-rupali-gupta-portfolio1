@@ -22,7 +22,7 @@ export default function Shop({ onBook }) {
           </article>
         })}</div>
         {selected && <div className="shop-details" id="shop-preview-details" role="status"><div><h3>{selected} — Coming soon</h3><p>Product information and online shopping will be available here soon. Ask Dr. Rupali about suitability before choosing supplements.</p></div><button type="button" className="shop-product-button" onClick={onBook}>Consult Dr. Rupali</button><button type="button" className="shop-close" aria-label="Close product preview" onClick={() => setSelected(null)}>×</button></div>}
-        <div className="shop-footer">{shopUrl ? <a className="shop-explore" href={shopUrl} target="_blank" rel="noopener noreferrer"><Cart />Explore Shop Now <Arrow s={22} /></a> : <><button className="shop-explore" type="button" onClick={() => setSelected('Wellness Store')}><Cart />Explore to Shop Now <Arrow s={22} /></button><p>Online store coming soon</p></>}</div>
+        <div className="shop-footer">{shopUrl ? <a className="shop-explore appointment-highlight" href={shopUrl} target="_blank" rel="noopener noreferrer"><Cart />Explore Shop Now <Arrow s={22} /></a> : <><button className="shop-explore appointment-highlight" type="button" onClick={() => setSelected('Wellness Store')}><Cart />Explore to Shop Now <Arrow s={22} /></button><p>Online store coming soon</p></>}</div>
         <p className="shop-note">Illustrative product previews. Product details will be added when available. Supplements do not replace prescribed treatment.</p>
       </div>
     </section>

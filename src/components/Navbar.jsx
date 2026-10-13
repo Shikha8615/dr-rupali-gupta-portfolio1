@@ -50,14 +50,14 @@ export default function Navbar({ onBook, dark, toggle, homeHref = '', activeSect
         <nav className="nv" aria-label="Main">{links('l')}</nav>
         <div className="ac">
           <button className="ic" type="button" aria-label="Toggle dark / light mode" onClick={toggle}>{dark ? <Sun s={18} /> : <Moon s={18} />}</button>
-          <a className="pill sm" href="#book" onClick={book}>Book Appointment <ArrowUR s={15} /></a>
+          <a className="pill sm appointment-highlight" href="#book" onClick={book}>Book Appointment <ArrowUR s={15} /></a>
           <button className={'bg' + (open ? ' x' : '')} aria-label="Menu" aria-expanded={open} onClick={() => setOpen(o => !o)}><i /><i /><i /></button>
         </div>
       </div>
       <div className={'mp' + (open ? ' open' : '')}>
         <div className="in">
           {links('l')}
-          <a className="pill" href="#book" onClick={book}>Book Appointment <ArrowUR s={16} /></a>
+          <a className="pill appointment-highlight" href="#book" onClick={book}>Book Appointment <ArrowUR s={16} /></a>
         </div>
       </div>
     </header>

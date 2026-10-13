@@ -13,7 +13,7 @@ export default function Hero({ onBook }) {
           <p className="hey">Hey, this is</p>
           <h1>Dr. Rupali</h1>
           <p className="sub">Gynaecologist &amp; Garbhsanskar Guide<br />Women's Health Expert in Karnal</p>
-          <a className="pill" href="#book" onClick={e => { e.preventDefault(); onBook() }}>Book An Appointment <ArrowUR s={16} /></a>
+          <a className="pill appointment-highlight" href="#book" onClick={e => { e.preventDefault(); onBook() }}>Book An Appointment <ArrowUR s={16} /></a>
         </div>
         <div className="hpt">
           <span className="stk"><i><Heart s={15} /></i><i><Users s={15} /></i><i><Award s={15} /></i></span>

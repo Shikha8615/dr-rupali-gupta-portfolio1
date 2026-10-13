@@ -7,7 +7,7 @@ export default function CtaBanner({ onBook }) {
         <div className="bnr">
           <i className="bh"><Heart s={28} fill="currentColor" /></i>
           <div className="bt"><b>Your health deserves<br />personalised care.</b><span>Book your consultation today.</span></div>
-          <a className="wb" href="#book" onClick={e => { e.preventDefault(); onBook() }}>Book Appointment <ArrowUR s={16} /></a>
+          <a className="wb appointment-highlight" href="#book" onClick={e => { e.preventDefault(); onBook() }}>Book Appointment <ArrowUR s={16} /></a>
         </div>
       </div>
     </section>

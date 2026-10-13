@@ -424,3 +424,23 @@ button.service-row:hover,button.service-row[aria-expanded="true"]{background:var
 .family-guide button:focus-visible,.family-guide a:focus-visible,.family-checklist input:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
 #family-details{scroll-margin-top:100px}
 @media(max-width:760px){.family-support{grid-template-columns:1fr}.family-table th,.family-table td{padding:12px;min-width:110px}}
+/* Appointment call-to-action highlight. */
+.appointment-highlight{position:relative;isolation:isolate;animation:appointment-glow 3s ease-in-out infinite}
+.appointment-highlight:before{content:'';position:absolute;inset:-5px;border:2px solid #3b82f680;border-radius:inherit;pointer-events:none;animation:appointment-ring 3s ease-out infinite}
+@keyframes appointment-glow{0%,100%{box-shadow:0 6px 18px #2563eb35;filter:brightness(1)}50%{box-shadow:0 8px 30px #2563eb70,0 0 12px #60a5fa45;filter:brightness(1.1)}}
+@keyframes appointment-ring{0%{opacity:0;transform:scale(.98)}20%{opacity:.65}75%,100%{opacity:0;transform:scale(1.08,1.2)}}
+.appointment-highlight:hover,.appointment-highlight:focus-visible{animation-play-state:paused}
+.appointment-highlight:hover:before,.appointment-highlight:focus-visible:before{animation-play-state:paused;opacity:0}
+@media(prefers-reduced-motion:reduce){.appointment-highlight{animation:none}.appointment-highlight:before{display:none}}
+/* Subtle highlight for product actions. */
+.shop-product-copy .shop-product-button{animation:product-button-glow 2.8s ease-in-out infinite}
+.shop-product:nth-child(2) .shop-product-button{animation-delay:.5s}
+.shop-product:nth-child(3) .shop-product-button{animation-delay:1s}
+.shop-product:nth-child(4) .shop-product-button{animation-delay:1.5s}
+@keyframes product-button-glow{0%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 0 #2563eb00;background:var(--card)}50%{transform:translateY(-3px) scale(1.045);box-shadow:0 0 0 5px #2563eb18,0 6px 22px #2563eb55;background:var(--soft)}}
+.shop-product-copy .shop-product-button:hover,.shop-product-copy .shop-product-button:focus-visible{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.shop-product-copy .shop-product-button{animation:none}}
+/* Highlight the expert talks channel action. */
+.talks-all{animation:product-button-glow 2.8s ease-in-out infinite}
+.talks-all:hover,.talks-all:focus-visible{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.talks-all{animation:none}}

@@ -20,7 +20,7 @@ export default function GynaecologyCare({ onBook }) {
   const topics = [['Symptoms & When to Visit', concern[2]], ['1. Consultation', concern[3]], ['2. Diagnosis & Tests', concern[4]], ['3. Personalised Treatment', concern[5]], ['4. Diet & Lifestyle', concern[6]], ['5. Prevention & Follow-up', concern[7]]]
   return (
     <div className="pregnancy-guide gyn-guide">
-      <div className="pregnancy-hero"><div><p className="services-eyebrow">Gynaecology Care</p><h1>Complete women’s health, at every stage of life</h1><p className="pregnancy-intro">Understand your symptoms and explore a personalised path to care with Dr. Rupali Gupta.</p><button className="pill" type="button" onClick={onBook}>Book Appointment</button></div><img src="/images/gynaecology-care.jpg" alt="A woman consulting a female doctor about her health" width="1290" height="860" /></div>
+      <div className="pregnancy-hero"><div><p className="services-eyebrow">Gynaecology Care</p><h1>Complete women’s health, at every stage of life</h1><p className="pregnancy-intro">Understand your symptoms and explore a personalised path to care with Dr. Rupali Gupta.</p><button className="pill appointment-highlight" type="button" onClick={onBook}>Book Appointment</button></div><img src="/images/gynaecology-care.jpg" alt="A woman consulting a female doctor about her health" width="1290" height="860" /></div>
       <h2>Explore Your Health Concerns</h2><p className="pregnancy-intro">Select a concern to explore symptoms, assessment, treatment options and everyday care.</p>
       <div className="concern-grid">{CONCERNS.map(([title, subtitle], index) => <button key={title} type="button" aria-pressed={selected === index} aria-controls="concern-details" onClick={() => { setSelected(index); setExpanded([0, 1, 2, 3, 4, 5]) }}><strong>{title}</strong><span>{subtitle}</span></button>)}</div>
       <section id="concern-details" className="concern-details" aria-labelledby="concern-heading"><h2 id="concern-heading" aria-live="polite">{concern[0]}</h2>
@@ -30,7 +30,7 @@ export default function GynaecologyCare({ onBook }) {
       <div className="gyn-preparation"><h2>Prepare for Your Consultation</h2><ul><li>Bring previous reports, prescriptions and a list of medicines or supplements.</li><li>Note your last period, symptom dates, pain patterns and questions.</li><li>Tell the doctor about allergies, previous procedures and pregnancy plans.</li><li>Examinations are explained beforehand and require your consent. You can request a chaperone or ask to stop.</li></ul></div>
       <div className="gyn-urgent"><h3>When to seek urgent care</h3><p>Seek urgent medical care for sudden severe pelvic pain, fainting, heavy bleeding with dizziness, or pain or bleeding when pregnancy is possible. Fever with pelvic pain also needs prompt assessment. Do not wait for a routine booking.</p></div>
       <p className="pregnancy-note">General patient education. Your diagnosis, tests, nutrition and treatment depend on individual assessment. Screening recommendations should follow local guidance.</p>
-      <div className="pregnancy-actions"><button className="pill" type="button" onClick={onBook}>Book Appointment</button><a href="/index.html#expert-talks">Explore Dr. Rupali’s expert talks →</a></div>
+      <div className="pregnancy-actions"><button className="pill appointment-highlight" type="button" onClick={onBook}>Book Appointment</button><a href="/index.html#expert-talks">Explore Dr. Rupali’s expert talks →</a></div>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { PHONE, WA_NUMBER, EMAIL, SOCIAL } from '../config'
 import { Facebook, Instagram, Youtube, Pin, Phone, Mail, Chat, Up, Heart } from './Icons'
 
-const LINKS = [['top', 'Home'], ['about', 'About'], ['services', 'Services'], ['journey', 'Journey'], ['faq', 'FAQ'], ['contact', 'Contact']]
+const LINKS = [['top', 'Home'], ['about', 'About'], ['services', 'Services'], ['journey', 'Journey'], ['expert-talks', 'Expert Talks'], ['shop', 'Shop'], ['faq', 'FAQ'], ['contact', 'Contact']]
 
 export default function Footer({ homeHref = '' }) {
   const [show, setShow] = useState(false)

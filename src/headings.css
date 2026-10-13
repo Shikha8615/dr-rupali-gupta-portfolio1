@@ -1,0 +1,10 @@
+/* Shared blue-green heading palette and gentle colour motion. */
+:root{--heading-blue:#2443bd;--heading-green:#218c43}
+:root[data-theme="dark"]{--heading-blue:#8eb2ff;--heading-green:#75d99a}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--heading-blue:#8eb2ff;--heading-green:#75d99a}}
+body h1,body h2{color:var(--heading-blue)!important;background-image:linear-gradient(105deg,var(--heading-blue) 0%,var(--heading-blue) 28%,var(--heading-green) 40%,var(--heading-green) 58%,var(--heading-blue) 72%,var(--heading-blue) 100%);background-size:125% 100%;background-position:0% 50%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:heading-colour-flow 6s ease-in-out infinite,heading-soft-float 4.5s ease-in-out infinite}
+body h1 span,body h2 span{color:inherit!important;-webkit-text-fill-color:inherit;background:transparent}
+@keyframes heading-colour-flow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes heading-soft-float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.018)}}
+@media(prefers-reduced-motion:reduce){body h1,body h2{animation:none}}
+@supports not (background-clip:text){body h1,body h2{-webkit-text-fill-color:var(--heading-blue);background:none}}

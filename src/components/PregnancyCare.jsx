@@ -34,7 +34,7 @@ export default function PregnancyCare({ onBook }) {
       <div className="pregnancy-hero"><div><p className="services-eyebrow">Pregnancy Care</p>
       <h2 id="pregnancy-heading">Your pregnancy journey, step by step</h2>
       <p className="pregnancy-intro">Explore each stage to understand routine care, nutrition and preparation.</p>
-      <button className="pill" type="button" onClick={onBook}>Book Appointment</button></div><img src="/images/pregnancy-care.jpg" alt="A pregnant woman discussing her pregnancy care with a doctor" width="1000" height="667" /></div>
+      <button className="pill appointment-highlight" type="button" onClick={onBook}>Book Appointment</button></div><img src="/images/pregnancy-care.jpg" alt="A pregnant woman discussing her pregnancy care with a doctor" width="1000" height="667" /></div>
       {STAGES.map((stage, index) => (
         <div className="trimester" key={stage.title}>
           <h3><button type="button" id={`trimester-button-${index}`} aria-expanded={expanded.includes(index)} aria-controls={`trimester-panel-${index}`} onClick={() => setExpanded(current => current.includes(index) ? current.filter(item => item !== index) : [...current, index])}>
@@ -46,7 +46,7 @@ export default function PregnancyCare({ onBook }) {
         </div>
       ))}
       <p className="pregnancy-note">Meal ideas are general examples. Dr. Rupali Gupta can tailor nutrition, tests and supplements to your health, allergies and pregnancy needs.</p>
-      <div className="pregnancy-actions"><button className="pill" type="button" onClick={onBook}>Book Appointment</button><a href="/index.html#expert-talks">Watch Dr. Rupali’s expert talks →</a></div>
+      <div className="pregnancy-actions"><button className="pill appointment-highlight" type="button" onClick={onBook}>Book Appointment</button><a href="/index.html#expert-talks">Watch Dr. Rupali’s expert talks →</a></div>
       <p className="pregnancy-sources">Further reading: <a href="https://www.nhs.uk/pregnancy/your-pregnancy-care/your-antenatal-care-and-appointments/" target="_blank" rel="noopener noreferrer">Antenatal care</a> · <a href="https://www.nhs.uk/best-start-in-life/pregnancy/healthy-eating-in-pregnancy/" target="_blank" rel="noopener noreferrer">Healthy eating</a></p>
     </div>
   )
